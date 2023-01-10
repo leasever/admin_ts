@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { UserInfo } from '../../models'
+import { Roles, UserInfo } from '../../models'
 import { clearLocalStorage, persistLocalStorage } from '../../utilities'
 
 export const EmptyUserState: UserInfo = {
   _id: '',
   name: '',
-  email: ''
+  email: '',
+  rol: Roles.USER,
 }
 
 export const UserKey = 'user'
@@ -15,7 +16,7 @@ export const userSlice = createSlice({
     ? JSON.parse(localStorage.getItem('user') as string)
     : EmptyUserState,
   reducers: {
-    createUser: (state, action) => {
+    createUser: (_, action) => {
       persistLocalStorage<UserInfo>(UserKey, action.payload)
       return action.payload
     },

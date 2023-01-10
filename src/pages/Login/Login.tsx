@@ -5,6 +5,7 @@ import { PrivateRoutes, PublicRoutes, Roles } from '../../models'
 import { createUser, resetUser, UserKey } from '../../redux/states/user'
 import { getAbraham } from '../../services'
 import { clearLocalStorage } from '../../utilities'
+
 export interface LoginInterface {}
 
 const Login: React.FC<LoginInterface> = () => {
@@ -18,11 +19,9 @@ const Login: React.FC<LoginInterface> = () => {
   }, [])
 
   const login = async () => {
-    try {
-      const result = await getAbraham()
-      dispatch(createUser({ ...result, rol: Roles.USER }))
-      navigate(`/${PrivateRoutes.PRIVATE}`, { replace: true })
-    } catch (error) {}
+    const { data } = await getAbraham()
+    dispatch(createUser({ ...data, rol: Roles.ADMIN }))
+    navigate(`/${PrivateRoutes.PRIVATE}`, { replace: true })
   }
   return (
     <div>
