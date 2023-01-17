@@ -6,17 +6,18 @@ import { AppStore } from '../redux/store'
 interface props {
   privateValidation: boolean
 }
-const PrivateValidationFragment = <Outlet />
-const PublicValidationFragment = <Navigate replace to={PrivateRoutes.PRIVATE} />
+const PublicValidationFragment = <Outlet />
+const PrivateValidationFragment = (
+  <Navigate replace to={PrivateRoutes.PRIVATE} />
+)
 
 const AuthGuard = ({ privateValidation }: props) => {
-  const userState = useSelector((store: AppStore) => store.user)
-
-  return userState._id ? (
+  const { token } = useSelector((store: AppStore) => store.user)
+  return token ? (
     privateValidation ? (
-      PrivateValidationFragment
-    ) : (
       PublicValidationFragment
+    ) : (
+      PrivateValidationFragment
     )
   ) : (
     <Navigate replace to={PublicRoutes.LOGIN} />

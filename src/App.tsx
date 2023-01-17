@@ -5,6 +5,7 @@ import { BrowserRouter, Navigate, Route } from 'react-router-dom'
 import './App.css'
 import { Logout } from './components/Logout'
 import { AuthGuard, RoleGuard } from './guard'
+import { AxiosInterceptor } from './interceptors'
 import { PrivateRoutes, PublicRoutes, Roles } from './models'
 import { Dashboard } from './pages/Private'
 import store from './redux/store'
@@ -14,9 +15,10 @@ const Login = lazy(() => import('./pages/Login/Login'))
 const Private = lazy(() => import('./pages/Private/Private'))
 
 function App() {
+  AxiosInterceptor()
   return (
     <div className='App'>
-      <Suspense fallback={<>Cargando...</>}>
+      <Suspense fallback={<>Loading suspense...</>}>
         <Provider store={store}>
           <BrowserRouter>
             <SnackbarProvider>

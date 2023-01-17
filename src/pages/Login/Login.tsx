@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { PrivateRoutes, PublicRoutes, Roles } from '../../models'
+import { useFetchAndLoad } from '../../hooks'
+import { PrivateRoutes, PublicRoutes } from '../../models'
 import { createUser, resetUser, UserKey } from '../../redux/states/user'
-import { getAbraham } from '../../services'
+import { login } from '../../services'
 import { clearLocalStorage } from '../../utilities'
 
 export interface LoginInterface {}
 
 const Login: React.FC<LoginInterface> = () => {
+  const { loading, callEndpoint } = useFetchAndLoad()
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -18,16 +21,25 @@ const Login: React.FC<LoginInterface> = () => {
     navigate(`/${PublicRoutes.LOGIN}`, { replace: true })
   }, [])
 
-  const login = async () => {
-    const { data } = await getAbraham()
-    dispatch(createUser({ ...data, rol: Roles.ADMIN }))
+  const handleClick = async () => {
+    const { data } = await callEndpoint(login())
+    dispatch(createUser({ ...data }))
     navigate(`/${PrivateRoutes.PRIVATE}`, { replace: true })
   }
+
   return (
-    <div>
-      <h2>Login</h2>
-      <button onClick={login}>LOGIN</button>
-    </div>
+    <>
+      {loading ? (
+        <div>
+          <h3>LOADING</h3>
+        </div>
+      ) : (
+        <div>
+          <h2>Login</h2>
+          <button onClick={handleClick}>LOGIN</button>
+        </div>
+      )}
+    </>
   )
 }
 

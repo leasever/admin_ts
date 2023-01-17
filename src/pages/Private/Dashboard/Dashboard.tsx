@@ -1,8 +1,15 @@
-import React from 'react';
+import React from 'react'
+import { ComponentTest, ComponentTest2 } from './components'
+
 export interface DashboardInterface {}
+const Dashboard: React.FC<DashboardInterface> = () => {
+  return (
+    <>
+      <h1>Dashboard</h1>
+      <ComponentTest2 />
+      <ComponentTest />
+    </>
+  )
+}
 
-const Dashboard : React.FC<DashboardInterface> = () => {
-	return <div>Dashboard</div>;
-};
-
-export default Dashboard;
+export default Dashboard

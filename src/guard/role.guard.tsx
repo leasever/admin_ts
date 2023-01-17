@@ -8,8 +8,10 @@ export interface Props {
 }
 
 const RoleGuard = ({ rol }: Props) => {
-  const userState = useSelector((store: AppStore) => store.user)
-  return userState.rol === rol ? (
+  const { role } = useSelector((store: AppStore) => store.user)
+  const found = role.find((r) => r === rol)
+
+  return found === rol ? (
     <Outlet />
   ) : (
     <Navigate replace to={PrivateRoutes.PRIVATE} />

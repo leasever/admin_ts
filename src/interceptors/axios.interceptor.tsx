@@ -1,16 +1,20 @@
 import axios, { AxiosRequestConfig } from 'axios'
-import { getValidationError, SnackbarUtilities } from '../utilities'
+import { PublicRoutes } from '../models'
+import { getToken, getValidationError, SnackbarUtilities } from '../utilities'
 
 export const AxiosInterceptor = () => {
+  axios.defaults.baseURL = import.meta.env.VITE_BASE_URL
+
   const updateHeader = (request: AxiosRequestConfig) => {
-    const token =      'eyJfaWQiOiI2M2I5OWZmNjQ3ZDRmZDM4YzQ1YjA2YjMiLCJyb2xlIjpbImFkbWluIiwidXNlciJdLCJpYXQiOjE2NzMzMzA5MTgsImV4cCI6MTY3MzMzODExOH0'
+    let { token } = getToken('user')
     const newHeader = {
-      Autorization: token,
+      Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     }
     request.headers = newHeader
     return request
   }
+
   axios.interceptors.request.use((request) => {
     if (request.url?.includes('assets')) return request
     return updateHeader(request)
@@ -22,7 +26,13 @@ export const AxiosInterceptor = () => {
       return response
     },
     (error) => {
-      SnackbarUtilities.error(getValidationError(error.code))
+      const redirec = () => {
+        window.location.href = `/${PublicRoutes.LOGIN}`
+      }
+      if (error.response.status === 401) redirec()
+      error.response.data.message
+        ? SnackbarUtilities.error(error.response.data.message)
+        : SnackbarUtilities.error(getValidationError(error.code))
       return Promise.reject(error.code)
     }
   )

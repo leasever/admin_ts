@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 export interface HomeInterface {}
 
-const Home : React.FC<HomeInterface> = () => {
-	return <div>Home</div>;
-};
+const Home: React.FC<HomeInterface> = () => {
+  return <div>Home</div>
+}
 
-export default Home;
+export default Home
