@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { loadAbort } from '../utilities'
+import { loadAbort } from '@utilities/index'
 
 const authUrl = 'auth'
 

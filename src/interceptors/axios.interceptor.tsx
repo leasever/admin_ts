@@ -1,6 +1,10 @@
 import axios, { AxiosRequestConfig } from 'axios'
-import { PublicRoutes } from '../models'
-import { getToken, getValidationError, SnackbarUtilities } from '../utilities'
+import { PublicRoutes } from '@models/index'
+import {
+  getToken,
+  getValidationError,
+  SnackbarUtilities,
+} from '@utilities/index'
 
 export const AxiosInterceptor = () => {
   axios.defaults.baseURL = import.meta.env.VITE_BASE_URL

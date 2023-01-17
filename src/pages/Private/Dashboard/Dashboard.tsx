@@ -1,4 +1,3 @@
-import React from 'react'
 import { ComponentTest, ComponentTest2 } from './components'
 
 export interface DashboardInterface {}

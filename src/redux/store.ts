@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { UserInfo } from '../models'
+import { UserInfo } from '@models/index'
 import userSliceReducer from './states/user'
 
 export interface AppStore {

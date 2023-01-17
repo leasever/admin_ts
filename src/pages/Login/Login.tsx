@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { useFetchAndLoad } from '../../hooks'
-import { PrivateRoutes, PublicRoutes } from '../../models'
-import { createUser, resetUser, UserKey } from '../../redux/states/user'
-import { login } from '../../services'
-import { clearLocalStorage } from '../../utilities'
+import { useFetchAndLoad } from '@hooks/index'
+import { PrivateRoutes, PublicRoutes } from '@models/index'
+import { createUser, resetUser, UserKey } from '@redux/states/user'
+import { login } from '@services/index'
+import { clearLocalStorage } from '@utilities/index'
 
 export interface LoginInterface {}
 

@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { useAsync, useFetchAndLoad } from '../../../../hooks'
-import { UserInfo } from '../../../../models'
-import { getUsers2 } from '../../../../services'
-import { ErrorBoundary } from '../../../../utilities'
+import { useAsync, useFetchAndLoad } from '@hooks/index'
+import { UserInfo } from '@models/index'
+import { getUsers2 } from '@services/index'
+import { ErrorBoundary } from '@utilities/index'
 
 function ComponentTest2() {
   const [users, setUsers] = useState([])
@@ -16,6 +16,7 @@ function ComponentTest2() {
   }
 
   useAsync(getApiData, adaptUsers, () => {}, [])
+  
   return (
     <ErrorBoundary
       fallBackComponent={<>don't walk ComponentTest2</>}

@@ -8,7 +8,7 @@ import { AuthGuard, RoleGuard } from './guard'
 import { AxiosInterceptor } from './interceptors'
 import { PrivateRoutes, PublicRoutes, Roles } from './models'
 import { Dashboard } from './pages/Private'
-import store from './redux/store'
+import store from '@redux/store'
 import { RoutesWithNotFound, SnackbarUtilitiesConfigurator } from './utilities'
 
 const Login = lazy(() => import('./pages/Login/Login'))

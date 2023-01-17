@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 import { Navigate, Outlet } from 'react-router-dom'
-import { PrivateRoutes, Roles } from '../models'
-import { AppStore } from '../redux/store'
+import { PrivateRoutes, Roles } from '@models/index'
+import { AppStore } from '@redux/store'
 
 export interface Props {
   rol: Roles
