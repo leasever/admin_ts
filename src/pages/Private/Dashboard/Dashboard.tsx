@@ -1,4 +1,4 @@
-import { ComponentTest, ComponentTest2 } from './components'
+import {ComponentTest, ComponentTest2} from './components'
 
 export interface DashboardInterface {}
 const Dashboard: React.FC<DashboardInterface> = () => {

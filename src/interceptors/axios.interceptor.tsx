@@ -1,16 +1,11 @@
-import axios, { AxiosRequestConfig } from 'axios'
-import { PublicRoutes } from '@models/index'
-import {
-  getToken,
-  getValidationError,
-  SnackbarUtilities,
-} from '@utilities/index'
+import {getToken, getValidationError, SnackbarUtilities} from '@/utilities'
+import axios, {AxiosRequestConfig} from 'axios'
 
 export const AxiosInterceptor = () => {
   axios.defaults.baseURL = import.meta.env.VITE_BASE_URL
 
   const updateHeader = (request: AxiosRequestConfig) => {
-    let { token } = getToken('user')
+    let {token} = getToken('user')
     const newHeader = {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
@@ -30,13 +25,8 @@ export const AxiosInterceptor = () => {
       return response
     },
     (error) => {
-      const redirec = () => {
-        window.location.href = `/${PublicRoutes.LOGIN}`
-      }
-      if (error.response.status === 401) redirec()
-      error.response.data.message
-        ? SnackbarUtilities.error(error.response.data.message)
-        : SnackbarUtilities.error(getValidationError(error.code))
+      if (!error.response) getValidationError(error.code)
+      !error.response.data.message ? getValidationError(error.code) : SnackbarUtilities.error(error.response.data.message)
       return Promise.reject(error.code)
     }
   )

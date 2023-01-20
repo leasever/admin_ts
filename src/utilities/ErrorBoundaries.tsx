@@ -15,22 +15,22 @@ interface State {
 export class ErrorBoundary extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props)
-    this.state = { hasError: false, resetCondition: props.resetCondition }
+    this.state = {hasError: false, resetCondition: props.resetCondition}
   }
 
   static getDerivedStateFromError(error: Error) {
-    return { hasError: true }
+    return {hasError: true}
   }
 
   static getDerivedStateFromProps(props: Props, state: State) {
     if (props.resetCondition !== state.resetCondition) {
-      return { hasError: false, resetCondition: props.resetCondition }
+      return {hasError: false, resetCondition: props.resetCondition}
     }
     return null
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    return { hasError: true }
+    return {hasError: true}
   }
 
   render() {

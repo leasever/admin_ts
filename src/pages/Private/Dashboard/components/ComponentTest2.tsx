@@ -1,13 +1,13 @@
-import { useState } from 'react'
-import { useAsync, useFetchAndLoad } from '@hooks/index'
-import { UserInfo } from '@models/index'
-import { getUsers2 } from '@services/index'
-import { ErrorBoundary } from '@utilities/index'
+import {useState} from 'react'
+import {useAsync, useFetchAndLoad} from '@/hooks'
+import {UserInfo} from '@/models'
+import {getUsers2} from '@/services'
+import {ErrorBoundary} from '@/utilities'
 
 function ComponentTest2() {
   const [users, setUsers] = useState([])
   const [error, setError] = useState<boolean>(false)
-  const { loading, callEndpoint } = useFetchAndLoad()
+  const {loading, callEndpoint} = useFetchAndLoad()
 
   const getApiData = async () => await callEndpoint(getUsers2())
 
@@ -16,19 +16,15 @@ function ComponentTest2() {
   }
 
   useAsync(getApiData, adaptUsers, () => {}, [])
-  
+
   return (
-    <ErrorBoundary
-      fallBackComponent={<>don't walk ComponentTest2</>}
-      error={error}
-      resetCondition={users}
-    >
+    <ErrorBoundary fallBackComponent={<>don't walk ComponentTest2</>} error={error} resetCondition={users}>
       <div>
         {loading ? (
-          <h1>Users loading...</h1>
+          <strong>Users loading...</strong>
         ) : (
           <div>
-            <h2>Component test 2</h2>
+            <h1>Component test 2</h1>
             <ul>
               {users.map((user: UserInfo) => (
                 <li key={user._id}>

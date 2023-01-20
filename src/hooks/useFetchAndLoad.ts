@@ -1,6 +1,6 @@
-import { AxiosResponse } from 'axios'
-import { useEffect, useState } from 'react'
-import { AxiosCall } from '@models/index'
+import {AxiosResponse} from 'axios'
+import {useEffect, useState} from 'react'
+import {AxiosCall} from '@/models'
 
 const useFetchAndLoad = () => {
   const [loading, setLoading] = useState(false)
@@ -30,7 +30,7 @@ const useFetchAndLoad = () => {
     }
   }, [])
 
-  return { loading, callEndpoint }
+  return {loading, callEndpoint}
 }
 
 export default useFetchAndLoad

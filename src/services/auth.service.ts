@@ -1,14 +1,12 @@
+import {loadAbort} from '@/utilities'
 import axios from 'axios'
-import { loadAbort } from '@utilities/index'
 
 const authUrl = 'auth'
 
-const data = { email: 'leandrovegaabraham@gmail.com', password: '12345678' }
-
-export const login = () => {
+export const login = (email: string, password: string) => {
   const controller = loadAbort()
   return {
-    call: axios.post(authUrl + '/login', data, { signal: controller.signal }),
+    call: axios.post(authUrl + '/login', {email, password}, {signal: controller.signal}),
     controller,
   }
 }
@@ -16,7 +14,7 @@ export const login = () => {
 export const getUsers = () => {
   const controller = loadAbort()
   return {
-    call: axios.get(authUrl, { signal: controller.signal }),
+    call: axios.get(authUrl, {signal: controller.signal}),
     controller,
   }
 }
@@ -24,7 +22,7 @@ export const getUsers = () => {
 export const getUsers2 = () => {
   const controller = loadAbort()
   return {
-    call: axios.get(authUrl + 'xxxxxxxxxxxxx', { signal: controller.signal }),
+    call: axios.get(authUrl + 'xxxxxxxxxxxxx', {signal: controller.signal}),
     controller,
   }
 }
