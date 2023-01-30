@@ -1,1 +1,1 @@
-export { default as Iconify } from './Iconify'
+export {default as Iconify} from './Iconify'

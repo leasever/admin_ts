@@ -7,7 +7,7 @@ export const AxiosInterceptor = () => {
   const updateHeader = (request: AxiosRequestConfig) => {
     let {token} = getToken('user')
     const newHeader = {
-      Authorization: `Bearer ${token}`,
+      Authorization:  `Bearer ${token}`,
       'Content-Type': 'application/json',
     }
     request.headers = newHeader
@@ -26,7 +26,9 @@ export const AxiosInterceptor = () => {
     },
     (error) => {
       if (!error.response) getValidationError(error.code)
-      !error.response.data.message ? getValidationError(error.code) : SnackbarUtilities.error(error.response.data.message)
+      !error.response.data.message
+        ? getValidationError(error.code)
+        : SnackbarUtilities.error(error.response.data.message)
       return Promise.reject(error.code)
     }
   )

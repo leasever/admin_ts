@@ -54,8 +54,9 @@ const LoginForm: React.FC<LoginFormInterface> = () => {
                   title={showPassword ? 'hide' : 'show'}
                   sx={{
                     width: 40,
+                    height: 40
                   }}>
-                  <Iconify icon={showPassword ? 'eva:eye-off-fill' : 'eva:eye-fill'} height={30} width={30} />
+                  <Iconify icon={showPassword ? 'eva:eye-off-fill' : 'eva:eye-fill'} width={30} />
                 </IconButton>
               </InputAdornment>
             ),

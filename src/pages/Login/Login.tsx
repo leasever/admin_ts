@@ -1,10 +1,10 @@
 import reactLogo from '@/assets/react.svg'
 import {Iconify} from '@/components/Iconify'
+import {LoginForm} from '@/components/sections/auth'
 import useResponsive from '@/hooks/useResponsive'
-import {LoginForm} from '@/sections/auth'
 import {Container, Divider, Stack, Typography} from '@mui/material'
 import {SocialButton} from './components'
-import {StyledContent, StyledRoot, StyledSection} from './styled'
+import {StyledContent, StyledRoot, StyledSection} from './styles'
 
 export interface LoginInterface {}
 
@@ -35,18 +35,19 @@ const Login: React.FC<LoginInterface> = () => {
           </Typography>
 
           <Stack direction='row' spacing={2}>
-            <SocialButton>
-              <Iconify icon='eva:google-fill' height={30} width={22} color='#DF3E30' />
-              Google
-            </SocialButton>
-            <SocialButton>
-              <Iconify icon='eva:facebook-fill' height={30} width={22} color='#1877F2' />
-              Facebook
-            </SocialButton>
-            <SocialButton>
-              <Iconify icon='eva:twitter-fill' height={30} width={22} color='#1C9CEA' />
-              Twitter
-            </SocialButton>
+            <SocialButton
+              props={<Iconify icon='eva:google-fill' height={25} width={25} color='#DF3E30' />}
+              title={'Google'}
+            />
+
+            <SocialButton
+              props={<Iconify icon='eva:facebook-fill' height={25} width={25} color='#1877F2' />}
+              title={'Facebook'}
+            />
+            <SocialButton
+              props={<Iconify icon='eva:twitter-fill' height={25} width={25} color='#1C9CEA' />}
+              title={'Twitter'}
+            />
           </Stack>
 
           <Divider sx={{my: 3}}>

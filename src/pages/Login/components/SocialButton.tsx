@@ -1,19 +1,22 @@
 import {Button} from '@mui/material'
 
-export interface SocialButtonInterface {}
+interface SocialButtonInterface {
+  props: React.ReactNode
+  title: string
+}
 
-const SocialButton: React.FC<SocialButtonInterface> = (props: any) => {
+const SocialButton: React.FC<SocialButtonInterface> = ({props, title}) => {
   return (
     <Button
       fullWidth
       size='large'
-      color='secondary'
+      color='inherit'
       variant='outlined'
-      title={`${props.children[1]}`}
+      title={title}
       sx={{
         height: 50,
       }}>
-      {props.children[0]}
+      {props}
     </Button>
   )
 }

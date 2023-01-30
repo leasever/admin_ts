@@ -1,11 +1,11 @@
-import {useMemo} from 'react'
-import {CssBaseline} from '@mui/material'
+import {Breakpoint, CssBaseline} from '@mui/material'
 import {
   ThemeProvider as MUIThemeProvider,
   PaletteOptions,
   StyledEngineProvider,
   createTheme,
 } from '@mui/material/styles'
+import {useMemo} from 'react'
 import customShadows, {CustomShadowsInteface} from './customShadows'
 import GlobalStyles from './globalStyles'
 import componentsOverride from './overrides'
@@ -20,13 +20,17 @@ interface ThemeProviderInterface {
 export interface ComponentsOverridesInterface {
   customShadows?: CustomShadowsInteface
   palette: PaletteOptions
+  breakpoints?: BreakpointsInterface
   shape: ShapeInterface
-  spacing?: (arg: number) => number | string
+  spacing?: (arg1: number, arg2?: number, arg3?: number) => number | string
   transitions?: Object
   typography?: Object
 }
 interface ShapeInterface {
   borderRadius: number
+}
+interface BreakpointsInterface {
+  up: (key: number | Breakpoint) => string
 }
 
 const ThemeProvider: React.FC<ThemeProviderInterface> = ({children}) => {
